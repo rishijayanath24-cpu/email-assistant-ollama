@@ -1,0 +1,17 @@
+Category,Subject,Email,Reply
+Order Delay,Order not delivered yet,My order was supposed to arrive last week but it still has not been delivered. Where is it?,We apologize for the delay. Our team is checking your shipment with the courier and you will receive a tracking update within 24 hours.
+Order Delay,Late delivery,My package is five days late. Can you tell me when it will arrive?,Sorry for the late delivery. We have escalated your shipment and will email you the new delivery date shortly.
+Order Delay,Tracking not updating,The tracking page has shown the same status for three days. Is my parcel lost?,Thank you for letting us know. We are contacting the courier to trace your parcel and will update you within 24 hours.
+Refund Request,Refund for cancelled order,I cancelled my order yesterday. How do I get my money back?,Refunds are available within 30 days of purchase. Please share your order ID and we will process it in 5-7 business days.
+Refund Request,Want to return item,I would like to return the headphones I bought and get a refund.,We are happy to help. Please share your order ID and we will send a return label; the refund is issued once the item is received.
+Refund Request,Refund not received,I returned my item two weeks ago but the refund has not reached my account.,We apologize for the wait. Refunds can take 5-7 business days after we receive the item; please share your order ID so we can check the status.
+Damaged Product,Package arrived damaged,My package arrived damaged and the box was crushed.,We are sorry for the inconvenience. We will arrange a replacement immediately after you share a photo of the damage.
+Damaged Product,Broken laptop screen,My laptop screen is cracked on arrival.,We apologize for the inconvenience. We will arrange a replacement after verification; please send a photo and your order ID.
+Damaged Product,Defective item received,The blender I received does not turn on at all.,"Sorry about that. Please share your order ID and a short video of the issue, and we will arrange a replacement or refund."
+Billing Issue,Charged twice,I was charged twice for the same order.,We apologize for the error. Please share your order ID and the last four digits of the card; any duplicate charge will be reversed in 3-5 business days.
+Billing Issue,Invoice needed,Can you send me the invoice for my last purchase?,Certainly. Please share your order ID and we will email the invoice to your registered address.
+Billing Issue,Wrong amount billed,The amount on my bill is higher than the price shown on the website.,Thank you for flagging this. We are reviewing your bill against the listed price and will confirm any correction within 2 business days.
+Technical Support,Cannot log in,I forgot my password and the reset email never arrives.,"Please check your spam folder and use the 'Forgot password' link again. If it still fails, reply with your registered email and we will reset it manually."
+Technical Support,App keeps crashing,The mobile app crashes every time I open the cart.,"Sorry for the trouble. Please update to the latest version; if it continues, share your phone model so our team can investigate."
+General Inquiry,Pricing question,What are your pricing plans?,Our basic plan starts at $10/month with premium options. Let us know if you would like a detailed comparison.
+General Inquiry,Contact support,How can I reach your support team?,"You can reach support at support@example.com, 24/7."

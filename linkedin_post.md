@@ -1,17 +1,16 @@
-🚀 Just built an Intelligent Email Assistant that runs 100% locally with Ollama!
+🚀 Built an Intelligent Email Assistant that runs 100% locally with Ollama!
 
-Replying to repetitive emails is a time sink, so I built an assistant that:
+Customer support replies shouldn't start from a blank page. My assistant learns from past conversations:
 
-✅ Answers common questions (pricing, refunds, support) instantly from an FAQ knowledge base
-🤖 Drafts professional, polite replies for everything else using a local LLM (qwen2.5:0.5b via Ollama)
-🧠 Remembers previous exchanges, so follow-up emails get context-aware responses
-🔒 Needs no API keys and sends no data to the cloud
+🔍 Detects the intent of each customer email (delay, refund, damaged item, billing...)
+📚 Retrieves the 3 most similar past emails with Sentence Transformers
+🤖 Drafts a professional reply grounded in those past replies (qwen2.5:0.5b via Ollama)
+🎭 Rewrites the reply in a formal, friendly, empathetic or concise tone
+📝 Summarizes the conversation with the customer
+💾 Saves every reply locally, with no cloud APIs and no API keys
 
-How it works: the FAQ is checked first for a keyword match. If there's none, the email goes to the model along with the last 3 exchanges for context, and every exchange is logged back into memory.
+The big lesson: a tiny 0.5B model writes well but can invent policy details. Showing it real past replies as examples (retrieval) keeps its answers grounded, so facts come from your history and the LLM handles the language.
 
-What I learned: a small 0.5B model is great at tone and structure, but it can invent policy details (it told a customer an order "cannot be expedited"). That's why the FAQ layer matters: facts come from a trusted source, and the LLM handles language. Next step: grounding AI replies with retrieval (RAG).
+📂 Code: https://github.com/rishijayanath24-cpu/email-assistant-ollama
 
-📂 Code on GitHub: https://github.com/rishijayanath24-cpu/email-assistant-ollama
-🎥 Demo: https://youtu.be/CWGW4nZVBc8
-
-#Ollama #LLM #GenerativeAI #Python #AI #NLP #LocalAI #MachineLearning #BuildInPublic
+#Ollama #LLM #GenerativeAI #Python #NLP #SentenceTransformers #Streamlit #LocalAI #BuildInPublic

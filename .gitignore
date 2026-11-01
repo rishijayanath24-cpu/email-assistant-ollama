@@ -5,3 +5,4 @@ venv/
 .env
 .vscode/
 .DS_Store
+saved_replies/saved_replies.csv

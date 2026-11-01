@@ -1,55 +1,45 @@
 # Intelligent Email Assistant using Ollama
 
-An AI email assistant that drafts professional replies to incoming emails by combining an **FAQ knowledge base** with a **local LLM (Ollama)** and **conversation memory**.
+A local AI email assistant that generates **context-aware customer replies by analysing previous email interactions** – no cloud APIs needed.
 
 Course: 24CS2506 – Building Applications using GPT-4 | Experiment 3
 
 ## Features
-- **Instant FAQ replies** – keyword lookup (pricing, refund, support) returns a pre-written answer with no model call.
-- **AI-drafted replies** – unmatched emails are sent to a local Ollama model (`qwen2.5:0.5b`) with a polite, professional prompt template.
-- **Conversation memory** – the last 3 exchanges are injected into the prompt so follow-up emails stay consistent.
-- **Fully local** – no API keys or cloud calls.
+- **Intent detection** – the LLM classifies each email (Order Delay, Refund Request, Damaged Product, Billing Issue, Technical Support, General Inquiry).
+- **Similar email retrieval** – Sentence Transformers (`all-MiniLM-L6-v2`) finds the top-3 most similar past conversations in `data/past_emails.csv`.
+- **AI reply** – Ollama (`qwen2.5:0.5b`) drafts a professional reply grounded in those past replies and the ongoing conversation.
+- **Tone improvement** – rewrite the reply as Formal, Friendly, Empathetic or Concise.
+- **Conversation summary** – a short summary of the thread with the customer.
+- **Saved replies** – replies are stored locally in `saved_replies/saved_replies.csv`.
 
-## How it works
+## Architecture
 ```
-Incoming email
-   │
-   ├─ keyword in FAQ? ──► FAQ reply ─────────────┐
-   │                                             │
-   └─ no match ──► add last 3 exchanges ──► Ollama (qwen2.5:0.5b) ──► AI reply
-                                                 │
-                                   log exchange to conversation history
+Customer Name / Subject / Email
+   → Input Module → Intent Module (Ollama) → Retrieval Module (Sentence Transformers + past_emails.csv)
+   → Reply Module (Ollama) → Tone Module (Ollama) → Summary Module (Ollama) → Save Module (CSV)
 ```
 
 ## Setup
-1. Install [Ollama](https://ollama.com) and pull the model:
-   ```bash
-   ollama pull qwen2.5:0.5b
-   ollama serve
-   ```
-2. Install dependencies and run:
-   ```bash
-   pip install -r requirements.txt
-   python email_assistant.py
-   ```
-
-Change `MODEL_NAME` in `email_assistant.py` to use another model (e.g. `mistral`). Add entries to the `faq` dictionary to extend the knowledge base.
-
-## Sample output
-| FAQ reply | AI reply with memory |
-|---|---|
-| ![pricing](screenshots/faq_pricing.png) | ![delay](screenshots/ai_reply_delay.png) |
-
-More screenshots are in `screenshots/`. The full lab report is in `docs/`.
+```bash
+ollama pull qwen2.5:0.5b
+ollama serve                      # keep running
+pip install -r requirements.txt
+streamlit run app.py
+```
+The first run downloads the Sentence Transformer model (needs internet once).
 
 ## Project structure
 ```
-email-assistant-ollama/
-├── email_assistant.py   # main program
-├── requirements.txt
-├── screenshots/         # program output
-└── docs/                # experiment report (PDF)
+├── app.py                 # Streamlit UI
+├── modules/
+│   ├── input_module.py    ├── intent_module.py   ├── retrieval_module.py
+│   ├── reply_module.py    ├── tone_module.py     ├── summary_module.py
+│   ├── save_module.py     └── llm.py             # Ollama API wrapper
+├── data/past_emails.csv   # historical emails + replies
+├── saved_replies/         # generated replies (CSV)
+├── screenshots/           # output screenshots
+└── docs/                  # lab record (PDF)
 ```
 
 ## Tech stack
-Python · Ollama · qwen2.5:0.5b · Requests
+Python · Ollama (qwen2.5:0.5b) · Sentence Transformers · Pandas · Streamlit
