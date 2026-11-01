@@ -24,6 +24,7 @@ def get_retriever():
 def init_state():
     st.session_state.setdefault("history", [])   # finished exchanges (conversation memory)
     st.session_state.setdefault("current", None)  # exchange being worked on
+    st.session_state.setdefault("reply_rev", 0)   # bumps the reply box key so new text shows
 
 
 init_state()
@@ -59,6 +60,7 @@ if submitted:
                                    intent, similar, st.session_state.history)
         st.session_state.current = {**mail, "intent": intent, "similar": similar,
                                     "reply": reply, "tone": "Original", "summary": None}
+        st.session_state.reply_rev += 1
     except ValueError as err:
         st.warning(str(err))
     except OllamaError as err:
@@ -76,7 +78,8 @@ if cur:
                  use_container_width=True, hide_index=True)
 
     st.header("4. AI Reply")
-    st.text_area("Generated reply", cur["reply"], height=220, key="reply_box")
+    st.text_area("Generated reply", cur["reply"], height=220,
+                 key=f"reply_box_{st.session_state.reply_rev}")
 
     st.header("5. Tone Improvement")
     t1, t2 = st.columns([1, 3])
@@ -86,6 +89,7 @@ if cur:
             with st.spinner("Rewriting..."):
                 cur["reply"] = improve_tone(cur["reply"], tone)
                 cur["tone"] = tone
+            st.session_state.reply_rev += 1
             st.rerun()
         except OllamaError as err:
             st.error(str(err))
