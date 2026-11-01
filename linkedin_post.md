@@ -11,7 +11,7 @@ How it works: the FAQ is checked first for a keyword match. If there's none, the
 
 What I learned: a small 0.5B model is great at tone and structure, but it can invent policy details (it told a customer an order "cannot be expedited"). That's why the FAQ layer matters: facts come from a trusted source, and the LLM handles language. Next step: grounding AI replies with retrieval (RAG).
 
-📂 Code on GitHub: <ADD YOUR REPO LINK>
+📂 Code on GitHub: https://github.com/rishijayanath24-cpu/email-assistant-ollama
 🎥 Demo: https://youtu.be/CWGW4nZVBc8
 
 #Ollama #LLM #GenerativeAI #Python #AI #NLP #LocalAI #MachineLearning #BuildInPublic
